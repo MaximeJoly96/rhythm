@@ -1,23 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
+using Zenyth.Models;
 
-public class MusicPlayer : MonoBehaviour
+namespace Zenyth.Game
 {
-    [SerializeField]
-    private Song _song;
-
-    private AudioSource _source;
-
-    public Song Song { get { return _song; } }
-
-    private void Awake()
+    public class MusicPlayer : MonoBehaviour
     {
-        _source = GetComponent<AudioSource>();
-    }
+        [SerializeField]
+        private Song _song;
 
-    public void PlayMusic()
-    {
-        _source.clip = _song.Audio;
-        _source.Play();
+        private AudioSource _source;
+
+        public Song Song { get { return _song; } }
+
+        private void Awake()
+        {
+            _source = GetComponent<AudioSource>();
+        }
+
+        public void PlayMusic()
+        {
+            _source.clip = _song.Audio;
+            _source.Play();
+        }
     }
 }

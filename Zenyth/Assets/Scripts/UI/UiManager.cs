@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using Zenyth.UI;
 
-public class UiManager : MonoBehaviour
+namespace Zenyth.UI
 {
-    [SerializeField]
-    private TitleScreenManager _titleScreenManager;
+    public class UiManager : MonoBehaviour
+    {
+        [SerializeField]
+        private TitleScreenManager _titleScreenManager;
+    }
 }

@@ -1,14 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-[Serializable]
-public class Trajectory
+namespace Zenyth.Trajectories
 {
-    [SerializeField]
-    private Segment[] _segments;
-
-    public Segment[] Segments
+    [Serializable]
+    public class Trajectory
     {
-        get { return _segments; }
+        [SerializeField]
+        private Segment[] _segments;
+
+        public Segment[] Segments
+        {
+            get { return _segments; }
+        }
     }
 }

@@ -1,28 +1,30 @@
 ﻿using System.IO;
-using UnityEngine;
 
-public static class BeatmapConverter
+namespace Zenyth.FileReading
 {
-    public static void ConvertBeatmap(string path)
+    public static class BeatmapConverter
     {
-        string[] lines = File.ReadAllLines(path);
-
-        int i = 0;
-        while(i < lines.Length && lines[i] != "[HitObjects]")
+        public static void ConvertBeatmap(string path)
         {
-            i++;
-        }
+            string[] lines = File.ReadAllLines(path);
 
-        // here we start reading
-        i++;
-
-        using (StreamWriter sr = new StreamWriter("C:\\Users\\Maxah\\song.songdata"))
-        {
-            while (i < lines.Length)
+            int i = 0;
+            while (i < lines.Length && lines[i] != "[HitObjects]")
             {
-                string[] line = lines[i].Split(',');
-                sr.WriteLine(line[2].Insert(line[2].Length - 3, "."));
                 i++;
+            }
+
+            // here we start reading
+            i++;
+
+            using (StreamWriter sr = new StreamWriter("C:\\Users\\Maxah\\song.songdata"))
+            {
+                while (i < lines.Length)
+                {
+                    string[] line = lines[i].Split(',');
+                    sr.WriteLine(line[2].Insert(line[2].Length - 3, "."));
+                    i++;
+                }
             }
         }
     }

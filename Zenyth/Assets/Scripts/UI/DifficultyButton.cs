@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DifficultyButton : MonoBehaviour
+namespace Zenyth.UI
 {
-    public void DisplayName()
+    public class DifficultyButton : MonoBehaviour
     {
-        Debug.Log(gameObject.name);
+        public void DisplayName()
+        {
+            Debug.Log(gameObject.name);
+        }
     }
 }

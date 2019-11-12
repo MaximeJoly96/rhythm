@@ -2,19 +2,23 @@
 using System.IO;
 using UnityEngine;
 using System.Globalization;
+using Zenyth.Models;
 
-public static class SongDataReader
+namespace Zenyth.FileReading
 {
-    public static List<float> ReadTimeStampsForSong(Song song)
+    public static class SongDataReader
     {
-        string[] lines = File.ReadAllLines(Application.streamingAssetsPath + "/SongData/" + song.Key + ".songdata");
-        List<float> timeStamps = new List<float>();
-
-        foreach(string line in lines)
+        public static List<float> ReadTimeStampsForSong(Song song)
         {
-            timeStamps.Add(float.Parse(line, CultureInfo.InvariantCulture));
-        }
+            string[] lines = File.ReadAllLines(Application.streamingAssetsPath + "/SongData/" + song.Key + ".songdata");
+            List<float> timeStamps = new List<float>();
 
-        return timeStamps;
+            foreach (string line in lines)
+            {
+                timeStamps.Add(float.Parse(line, CultureInfo.InvariantCulture));
+            }
+
+            return timeStamps;
+        }
     }
 }
