@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Zenyth.FileReading;
+using Zenyth.Models;
+using Zenyth.Tools;
 
 namespace Zenyth.Game
 {
@@ -11,6 +13,8 @@ namespace Zenyth.Game
         [SerializeField]
         private GameObject _projectile;
 
+        private ProjectilePool _projectilePool;
+
         private List<float> _timeStamps;
         private int _stampIndex = 0;
         private float _timer = 0.0f;
@@ -19,6 +23,7 @@ namespace Zenyth.Game
         {
             Application.targetFrameRate = 144;
             _timeStamps = SongDataReader.ReadTimeStampsForSong(_musicPlayer.Song);
+            _projectilePool = new ProjectilePool();
             //BeatmapConverter.ConvertBeatmap("C:\\Users\\Maxah\\Desktop\\Nekomata Master feat. Shimotsuki Haruka - Element of SPADA (Frey) [Another].osu");
         }
 
@@ -31,11 +36,16 @@ namespace Zenyth.Game
         {
             if (_stampIndex < _timeStamps.Count && _timer >= _timeStamps[_stampIndex])
             {
-                Instantiate(_projectile);
+                _projectilePool.GetObject();
                 _stampIndex++;
             }
 
             _timer += Time.deltaTime;
+        }
+
+        public Projectile InstantiateProjectile()
+        {
+            return Instantiate(_projectile).GetComponent<Projectile>();
         }
     }
 }

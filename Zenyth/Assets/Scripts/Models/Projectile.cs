@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Zenyth.Trajectories;
+using Zenyth.Game;
 
-namespace Zenyth.Game
+namespace Zenyth.Models
 {
-    public class Projectile : MonoBehaviour
+    public class Projectile : PooledObject
     {
         [SerializeField]
         private Trajectory _trajectory;
@@ -29,6 +30,16 @@ namespace Zenyth.Game
                     }
                 }
             }
+        }
+
+        public override void CleanUp()
+        {
+            _trajectory = null;
+        }
+
+        public static Projectile Instantiate()
+        {
+            return FindObjectOfType<GameController>().InstantiateProjectile();
         }
     }
 }
