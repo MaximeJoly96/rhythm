@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 
 namespace Zenyth.Models
 {
-    public abstract class PooledObject : MonoBehaviour
+    public abstract class PooledObject
     {
         private readonly DateTime _createdAt = DateTime.Now;
 

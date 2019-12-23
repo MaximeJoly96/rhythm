@@ -621,6 +621,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1667046205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1667046207}
+  - component: {fileID: 1667046206}
+  m_Layer: 0
+  m_Name: Pattern_45DegY
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1667046206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667046205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ee853d9c19a4341bbcd731023106c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileBehaviour: {fileID: 5075915348485542927, guid: 80fadebb742ca834c98d7c2b0269941b,
+    type: 3}
+  _projectiles:
+  - _trajectory:
+      _segments:
+      - _positions:
+        - {x: 0, y: 0}
+        - {x: 0, y: 3}
+  - _trajectory:
+      _segments:
+      - _positions:
+        - {x: -1, y: 0}
+        - {x: -3, y: 3}
+  - _trajectory:
+      _segments:
+      - _positions:
+        - {x: 1, y: 0}
+        - {x: 3, y: 3}
+--- !u!4 &1667046207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667046205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.45, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755172580
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,8 +877,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _musicPlayer: {fileID: 67898773}
-  _projectile: {fileID: 991536780064420452, guid: 80fadebb742ca834c98d7c2b0269941b,
-    type: 3}
 --- !u!4 &2060475560
 Transform:
   m_ObjectHideFlags: 0
