@@ -13,7 +13,7 @@ namespace Zenyth.Game
 
         private ProjectilePool _projectilePool;
 
-        private List<float> _timeStamps;
+        private List<TimeStamp> _timeStamps;
         private int _stampIndex = 0;
         private float _timer = 0.0f;
 
@@ -37,12 +37,11 @@ namespace Zenyth.Game
 
         private void Update()
         {
-            if (_stampIndex < _timeStamps.Count && _timer >= _timeStamps[_stampIndex])
+            if (_stampIndex < _timeStamps.Count && _timer >= _timeStamps[_stampIndex].Time)
             {
-                ProjectilesPattern pattern = FindObjectOfType<ProjectilesPattern>();
+                ProjectilesPattern pattern = GameObject.Find("Pattern_" + _timeStamps[_stampIndex].Pattern).GetComponent<ProjectilesPattern>();
                 foreach(Projectile proj in pattern.Projectiles)
                 {
-                    
                     ProjectileBehaviour beh = _projectilePool.GetObject();
                     beh.Projectile = proj;
                 }

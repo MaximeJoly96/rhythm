@@ -7,15 +7,18 @@ namespace Zenyth.Models
 {
     public class ProjectileBehaviour : MonoBehaviour
     {
+        private GameController _gameController;
         public Projectile Projectile { get; set; }
 
         private void Start()
         {
+            _gameController = FindObjectOfType<GameController>();
             StartCoroutine(FollowTrajectory());
         }
 
         private IEnumerator FollowTrajectory()
         {
+            WaitForFixedUpdate wait = new WaitForFixedUpdate();
             foreach (Segment seg in Projectile.Trajectory.Segments)
             {
                 for (int j = 0; j < seg.Positions.Length - 1; j++)
@@ -25,10 +28,13 @@ namespace Zenyth.Models
                     {
                         transform.position = Vector2.Lerp(seg.Positions[j], seg.Positions[j + 1], i / 100.0f);
                         i++;
-                        yield return new WaitForEndOfFrame();
+                        yield return wait;
                     }
                 }
             }
+
+            gameObject.SetActive(false);
+            _gameController.ProjectilePool.ReleaseObject(this);
         }
     }
 }
