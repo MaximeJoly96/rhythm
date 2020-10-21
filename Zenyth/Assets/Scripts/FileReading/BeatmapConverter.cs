@@ -17,7 +17,7 @@ namespace Zenyth.FileReading
             // here we start reading
             i++;
 
-            using (StreamWriter sr = new StreamWriter("C:\\Users\\Maxah\\song.songdata"))
+            using (StreamWriter sr = new StreamWriter("C:\\Users\\Maxime\\song.songdata"))
             {
                 while (i < lines.Length)
                 {

@@ -34,7 +34,6 @@ namespace Zenyth.Models
             }
 
             gameObject.SetActive(false);
-            _gameController.ProjectilePool.ReleaseObject(this);
         }
     }
 }

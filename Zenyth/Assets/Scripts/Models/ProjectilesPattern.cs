@@ -6,19 +6,18 @@ namespace Zenyth.Models
 {
     public class ProjectilesPattern : MonoBehaviour
     {
-        private readonly GameController _gameController;
+        private Animator _animator;
 
-        [SerializeField]
-        private ProjectileBehaviour _projectileBehaviour;
-        [SerializeField]
-        private List<Projectile> _projectiles;
-
-        public List<Projectile> Projectiles
+        private void Awake()
         {
-            get { return _projectiles; }
+            _animator = GetComponent<Animator>();
         }
 
-        public ProjectileBehaviour ProjectileBehaviour { get { return _projectileBehaviour; } }
+        private void Update()
+        {
+            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                Destroy(this.gameObject);
+        }
     }
 }
 
