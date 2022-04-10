@@ -8,6 +8,8 @@ namespace Zenyth.UI
 {
     public class TitleScreenManager : MonoBehaviour
     {
+        public enum State { Home, DifficultySelect }
+
         private const float BACKGROUND_SPEED = 0.01f;
 
         [SerializeField]
@@ -21,8 +23,14 @@ namespace Zenyth.UI
         private Image _songSelectWheel;
         [SerializeField]
         private Camera _camera;
+        [SerializeField]
+        private Text _difficultyLabel;
+        [SerializeField]
+        private ScrollViewSongs _scrollViewSongs;
 
         private Utils.Utils.CardinalDirection _backgroundDirection;
+        private State _state;
+
         private static Vector3 NORTH_EAST_CORNER
         {
             get { return new Vector2(Screen.width, Screen.height); }
@@ -37,6 +45,9 @@ namespace Zenyth.UI
             System.Random rng = new System.Random();
             _camera.backgroundColor = new Color((float)rng.NextDouble(), (float)rng.NextDouble(), (float)rng.NextDouble());
             _backgroundDirection = rng.Next(0, 2) == 0 ? Utils.Utils.CardinalDirection.SouthWest : Utils.Utils.CardinalDirection.NorthEast;
+            _songSelectWheel.gameObject.SetActive(false);
+            _state = State.Home;
+            _scrollViewSongs.Hide(true);
         }
 
         private void Update()
@@ -46,10 +57,13 @@ namespace Zenyth.UI
             else
                 _movingBackground.transform.position += SOUTH_WEST_CORNER * Time.deltaTime * BACKGROUND_SPEED;
 
-            if(Input.GetKeyDown(KeyCode.X))
+            if(_state == State.Home)
             {
-                StartCoroutine(HideTitle());
-                StartCoroutine(DisplayWheel());
+                if (Input.anyKeyDown)
+                {
+                    StartCoroutine(HideTitle());
+                    StartCoroutine(DisplayWheel());
+                }
             }
         }
 
@@ -57,6 +71,8 @@ namespace Zenyth.UI
         {
             float alpha = 0.0f;
             Color newColor = _songSelectWheel.color;
+            _songSelectWheel.color = Color.clear;
+            _songSelectWheel.gameObject.SetActive(true);
 
             while(alpha <= 1.0f)
             {
@@ -65,7 +81,8 @@ namespace Zenyth.UI
                 _songSelectWheel.color = newColor;
                 yield return new WaitForEndOfFrame();
             }
-            
+
+            _state = State.DifficultySelect;
         }
 
         private IEnumerator HideTitle()
@@ -85,6 +102,17 @@ namespace Zenyth.UI
 
             _title.gameObject.SetActive(false);
             _pressKeyText.gameObject.SetActive(false);
+        }
+
+        public void UpdateDifficultyName(string label)
+        {
+            _difficultyLabel.text = label;
+        }
+
+        public void DifficultySelected(Utils.Utils.Difficulty difficulty)
+        {
+            _songSelectWheel.gameObject.SetActive(false);
+            _scrollViewSongs.Hide(false);
         }
     }
 }
