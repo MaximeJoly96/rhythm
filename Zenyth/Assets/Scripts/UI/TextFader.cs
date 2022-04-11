@@ -8,15 +8,14 @@ namespace Zenyth.UI
         private Text _text;
         private float _progress;
 
+        [SerializeField]
         private Color _from;
+        [SerializeField]
         private Color _to;
 
         private void Awake()
         {
             _text = GetComponent<Text>();
-
-            _from = _text.color;
-            _to = Color.clear;
         }
 
         private void Update()

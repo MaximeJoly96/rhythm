@@ -59,14 +59,12 @@ namespace Zenyth.Game
         private void Awake()
         {
             instance = this;
-            _songBpm = GameController.SongMetadata.bpm;
         }
 
         private void Start()
         {
             //Load the AudioSource attached to the Conductor GameObject
             _musicSource = GetComponent<AudioSource>();
-            _musicSource.clip = GameController.SongMetadata.audio;
 
             //Calculate the number of seconds in each beat
             _secPerBeat = 60.0f / _songBpm;

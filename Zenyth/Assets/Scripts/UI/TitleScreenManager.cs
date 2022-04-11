@@ -13,6 +13,11 @@ namespace Zenyth.UI
         private const float BACKGROUND_SPEED = 0.01f;
 
         [SerializeField]
+        private HomeScreenManager _homeScreenManager;
+        [SerializeField]
+        private DifficultySelectionScreenManager _difficultySelectionScreenManager;
+
+        [SerializeField]
         private Text _title;
         [SerializeField]
         private Text _pressKeyText;
@@ -25,8 +30,6 @@ namespace Zenyth.UI
         private Camera _camera;
         [SerializeField]
         private Text _difficultyLabel;
-        [SerializeField]
-        private ScrollViewSongs _scrollViewSongs;
 
         private Utils.Utils.CardinalDirection _backgroundDirection;
         private State _state;
@@ -47,7 +50,6 @@ namespace Zenyth.UI
             _backgroundDirection = rng.Next(0, 2) == 0 ? Utils.Utils.CardinalDirection.SouthWest : Utils.Utils.CardinalDirection.NorthEast;
             _songSelectWheel.gameObject.SetActive(false);
             _state = State.Home;
-            _scrollViewSongs.Hide(true);
         }
 
         private void Update()
@@ -112,7 +114,6 @@ namespace Zenyth.UI
         public void DifficultySelected(Utils.Utils.Difficulty difficulty)
         {
             _songSelectWheel.gameObject.SetActive(false);
-            _scrollViewSongs.Hide(false);
         }
     }
 }

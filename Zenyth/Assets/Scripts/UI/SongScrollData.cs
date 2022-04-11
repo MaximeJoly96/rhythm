@@ -12,6 +12,7 @@ public class SongMetadata
     public string artist;
     public float bpm;
     public int duration;
+    public float offset;
     public AudioClip audio;
 }
 
@@ -41,7 +42,6 @@ public class SongScrollData : Selectable, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData point)
     {
-        GameController.SongMetadata = _metadata;
         SceneManager.LoadScene("Game");
     }
 
