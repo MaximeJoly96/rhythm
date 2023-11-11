@@ -47,6 +47,12 @@ namespace Zenyth.Core
             GameStateChangedEvent.Invoke(CurrentGameState);
         }
 
+        public void BackButtonClicked()
+        {
+            CurrentGameState--;
+            SetGameState(CurrentGameState);
+        }
+
         private void CheckForGameState(GameState state)
         {
             switch(state)
@@ -54,11 +60,12 @@ namespace Zenyth.Core
                 case GameState.HomeScreen:
                     break;
                 case GameState.DifficultySelect:
+                    _uiManager.HideSongSelectScreen();
                     _uiManager.DisplayDifficultySelectionScreen();
                     break;
                 case GameState.SongSelect:
                     _uiManager.HideDifficultySelectionScreen();
-                    _uiManager.ShowSongSelectScreen();
+                    _uiManager.DisplaySongSelectScreen();
                     break;
                 case GameState.InGame:
                     break;

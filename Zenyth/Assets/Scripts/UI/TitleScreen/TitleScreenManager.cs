@@ -28,8 +28,6 @@ namespace Zenyth.UI.TitleScreen
         {
             SetBackground();
             SetText("Zenyth", "Press any key to continue");
-            _ambianceManager.SetAudio(_bgm);
-            _ambianceManager.PlayAudio(0.5f);
         }
 
         private void SetBackground()

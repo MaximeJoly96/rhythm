@@ -44,7 +44,7 @@ namespace Zenyth.UI
 
         #region Methods
         public abstract void Init();
-        public void Fade(bool fadeIn)
+        public virtual void Fade(bool fadeIn)
         {
             StartCoroutine(fadeIn ? FadeIn() : FadeOut());
         }

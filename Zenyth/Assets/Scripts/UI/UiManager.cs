@@ -12,6 +12,8 @@ namespace Zenyth.UI
         private DifficultySelectionScreenManager _diffSelectionScreenManager;
         [SerializeField]
         private SongSelectScreenManager _songSelectScreenManager;
+        [SerializeField]
+        private BackButtonManager _backButtonManager;
         #endregion
 
         #region Methods
@@ -20,6 +22,7 @@ namespace Zenyth.UI
             _titleScreenManager.Init();
             _diffSelectionScreenManager.Init();
             _songSelectScreenManager.Init();
+            _backButtonManager.Init();
         }
 
         public void DisplayDifficultySelectionScreen()
@@ -32,9 +35,16 @@ namespace Zenyth.UI
             DisplayScreenManager(_diffSelectionScreenManager, false);
         }
 
-        public void ShowSongSelectScreen()
+        public void DisplaySongSelectScreen()
         {
             DisplayScreenManager(_songSelectScreenManager, true);
+            DisplayScreenManager(_backButtonManager, true);
+        }
+
+        public void HideSongSelectScreen()
+        {
+            DisplayScreenManager(_songSelectScreenManager, false);
+            DisplayScreenManager(_backButtonManager, false);
         }
 
         private void DisplayScreenManager(ScreenManager manager, bool display)
