@@ -1,26 +1,24 @@
 ﻿using UnityEngine;
-using Zenyth.Game;
 using System.Collections;
+using Zenyth.Core;
 
 namespace Zenyth.UI
 {
     public abstract class ScreenManager : MonoBehaviour
     {
+        #region Constants
         private const float FADE_STEP = 0.025f;
+        #endregion
 
-        protected GameController _gameController;
+        #region Protected members
         protected CanvasGroup _canvasGroup;
+        protected GameManager _gameManager;
 
-        protected GameController GameController
-        {
-            get
-            {
-                if (_gameController == null)
-                    _gameController = FindObjectOfType<GameController>();
+        [SerializeField]
+        protected AmbianceManager _ambianceManager;
+        #endregion
 
-                return _gameController;
-            }
-        }
+        #region Properties
         protected CanvasGroup CanvasGroup
         {
             get
@@ -32,6 +30,20 @@ namespace Zenyth.UI
             }
         }
 
+        protected GameManager GameManager
+        {
+            get
+            {
+                if (_gameManager == null)
+                    _gameManager = GameManager.Instance;
+
+                return _gameManager;
+            }
+        }
+        #endregion
+
+        #region Methods
+        public abstract void Init();
         public void Fade(bool fadeIn)
         {
             StartCoroutine(fadeIn ? FadeIn() : FadeOut());
@@ -63,5 +75,6 @@ namespace Zenyth.UI
 
             CanvasGroup.alpha = 0.0f;
         }
+        #endregion
     }
 }

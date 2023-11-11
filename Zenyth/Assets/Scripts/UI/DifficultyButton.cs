@@ -1,31 +1,43 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using Zenyth.Core;
 
 namespace Zenyth.UI
 {
-    public class DifficultyButton : MonoBehaviour, IPointerDownHandler
+    public class DifficultyButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField]
-        private Utils.Utils.Difficulty _difficulty;
-
+        #region Private members
         private Text _text;
-        private TitleScreenManager _titleScreenManager;
+
+        [SerializeField]
+        private GameManager.Difficulty _difficulty;
+        #endregion
+
+        #region Events
+        public UnityEvent<GameManager.Difficulty> DifficultySelectedEvent { get; private set; }
+        #endregion
 
         private void Awake()
         {
             _text = GetComponent<Text>();
-            _titleScreenManager = FindObjectOfType<TitleScreenManager>();
+            DifficultySelectedEvent = new UnityEvent<GameManager.Difficulty>();
         }
 
         public void SelectDifficulty()
         {
-            _titleScreenManager.DifficultySelected(_difficulty);
+            DifficultySelectedEvent.Invoke(_difficulty);
         }
 
-        public void OnMouseOver()
+        public void OnPointerEnter(PointerEventData point)
         {
-            _titleScreenManager.UpdateDifficultyName(_difficulty.ToString());
+            _text.color = Color.black;
+        }
+
+        public void OnPointerExit(PointerEventData point)
+        {
+            _text.color = Color.white;
         }
 
         public void OnPointerDown(PointerEventData point)

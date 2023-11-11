@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Zenyth.Trajectories;
-using Zenyth.Game;
 
 namespace Zenyth.Models
 {
     public class ProjectileBehaviour : MonoBehaviour
     {
-        private GameController _gameController;
         public Projectile Projectile { get; set; }
 
         private void Start()
         {
-            _gameController = FindObjectOfType<GameController>();
             StartCoroutine(FollowTrajectory());
         }
 

@@ -6,5 +6,13 @@ namespace Zenyth.UI
     {
         [SerializeField]
         private SongsScrollViewer _songsScrollViewer;
+
+        #region Methods
+        public override void Init()
+        {
+            Hide(true);
+            gameObject.SetActive(false);
+        }
+        #endregion
     }
 }
