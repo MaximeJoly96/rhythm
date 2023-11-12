@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using Zenyth.Core;
 
 namespace Zenyth.Game
 {
@@ -90,6 +90,9 @@ namespace Zenyth.Game
             _loopPositionInBeats = _songPositionInBeats - _completedLoops * _beatsPerLoop;
 
             _loopPositionInAnalog = _loopPositionInBeats / _beatsPerLoop;
+
+            if (!_musicSource.isPlaying)
+                GameManager.Instance.LoadRewards();
         }
     }
 }

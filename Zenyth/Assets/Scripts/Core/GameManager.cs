@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using Zenyth.UI;
+using UnityEngine.SceneManagement;
 
 namespace Zenyth.Core
 {
@@ -70,6 +71,11 @@ namespace Zenyth.Core
                 case GameState.InGame:
                     break;
             }
+        }
+
+        public void LoadRewards()
+        {
+            SceneManager.LoadScene("Rewards");
         }
         #endregion
     }
