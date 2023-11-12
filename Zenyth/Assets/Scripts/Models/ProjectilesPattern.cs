@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Zenyth.Game;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Zenyth.Models
 {

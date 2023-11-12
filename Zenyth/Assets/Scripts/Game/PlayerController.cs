@@ -44,6 +44,9 @@ namespace Zenyth.Game
             float translationY = Input.GetAxis("Vertical") * Time.deltaTime * MOVEMENT_SPEED;
 
             transform.Translate(translationX, translationY, 0);
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -8.5f, 8.5f),
+                                             Mathf.Clamp(transform.position.y, -4.8f, 4.8f),
+                                             transform.position.z);
 
             if (Controls.ZenythActivated)
                 _status.UseZenyth();
